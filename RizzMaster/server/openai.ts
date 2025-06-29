@@ -14,7 +14,7 @@ export async function generateChatResponse(messages: ChatMessage[]): Promise<str
   try {
     const systemMessage: ChatMessage = {
       role: "system",
-      content: `You are RizzGPT, an AI-powered dating and relationship assistant. You provide helpful, respectful, and practical advice about dating, relationships, social interactions, and communication skills. 
+      content: `You are RizzNova, an AI-powered dating and relationship assistant. You provide helpful, respectful, and practical advice about dating, relationships, social interactions, and communication skills. 
 
 Your responses should be:
 - Supportive and encouraging
