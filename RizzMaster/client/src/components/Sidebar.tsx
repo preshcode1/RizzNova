@@ -75,7 +75,7 @@ export default function Sidebar({
           <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
             <span className="text-white text-lg font-bold">⚡</span>
           </div>
-          <h1 className="text-xl font-bold text-white">RizzGPT</h1>
+          <h1 className="text-xl font-bold text-white">RizzNova</h1>
         </div>
       </div>
 
