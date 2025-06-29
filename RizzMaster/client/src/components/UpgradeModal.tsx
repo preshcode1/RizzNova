@@ -28,7 +28,7 @@ export default function UpgradeModal({ isOpen, onClose }: UpgradeModalProps) {
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 mb-4">
             <Crown className="h-8 w-8 text-white" />
           </div>
-          <DialogTitle className="text-2xl">Upgrade to RizzGPT Pro</DialogTitle>
+          <DialogTitle className="text-2xl">Upgrade to RizzNova Pro</DialogTitle>
           <DialogDescription>
             Unlock advanced features and unlimited conversations
           </DialogDescription>
