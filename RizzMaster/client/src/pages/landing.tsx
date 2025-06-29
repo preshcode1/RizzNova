@@ -16,7 +16,7 @@ export default function Landing() {
             <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center">
               <Zap className="h-7 w-7 text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-slate-900">RizzGPT</h1>
+            <h1 className="text-4xl font-bold text-slate-900">RizzNova</h1>
           </div>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Your AI-powered dating and relationship assistant. Get personalized advice, conversation starters, and relationship guidance.
