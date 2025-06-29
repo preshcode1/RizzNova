@@ -204,7 +204,7 @@ export default function ChatPage() {
             <div className="w-6 h-6 bg-emerald-500 rounded flex items-center justify-center">
               <span className="text-white text-sm font-bold">⚡</span>
             </div>
-            <h1 className="text-lg font-bold text-gray-900">RizzGPT</h1>
+            <h1 className="text-lg font-bold text-gray-900">RizzNova</h1>
           </div>
           <div className="w-6" />
         </div>
