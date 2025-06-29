@@ -35,7 +35,7 @@ export default function ChatMessages({ messages, isLoading }: ChatMessagesProps)
             <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <Bot className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to RizzGPT!</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to RizzNova!</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Your AI-powered dating and relationship assistant. Ask me anything about dating, 
               relationships, or social interactions!
