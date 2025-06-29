@@ -87,7 +87,7 @@ export default function AuthPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/user'] });
       toast({
-        title: 'Welcome to RizzGPT!',
+        title: 'Welcome to RizzNova!',
         description: 'Your account has been created successfully.',
       });
       setLocation('/');
@@ -118,7 +118,7 @@ export default function AuthPage() {
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Welcome to{' '}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                RizzGPT
+                RizzNova
               </span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
