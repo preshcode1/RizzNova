@@ -47,7 +47,7 @@ export default function ChatInput({ onSendMessage, disabled, isLoading }: ChatIn
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask RizzGPT anything about dating, relationships, or social skills..."
+              placeholder="Ask RizzNova anything about dating, relationships, or social skills..."
               className="resize-none border-gray-300 rounded-lg pr-12 focus:ring-emerald-500 focus:border-emerald-500 min-h-[44px] max-h-24"
               disabled={disabled}
               rows={1}
@@ -67,7 +67,7 @@ export default function ChatInput({ onSendMessage, disabled, isLoading }: ChatIn
           </div>
         </form>
         <p className="text-xs text-gray-500 mt-2 text-center">
-          RizzGPT can make mistakes. Consider checking important information.
+          RizzNova can make mistakes. Consider checking important information.
         </p>
       </div>
     </div>
