@@ -70,9 +70,12 @@ export default function ChatMessages({ messages, isLoading }: ChatMessagesProps)
                   </p>
                 </div>
               </Card>
-              <p className="text-xs text-gray-500 mt-1">
-                {formatTime(message.timestamp)}
-              </p>
+              {message.timestamp && (
+  <p className="text-xs text-gray-500 mt-1">
+    {formatTime(message.timestamp)}
+  </p>
+)}
+
             </div>
           </div>
         ))}
