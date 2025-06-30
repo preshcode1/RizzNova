@@ -1,85 +1,52 @@
-import OpenAI from "openai";
-
-// the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-const openai = new OpenAI({ 
-  apiKey: process.env.OPENAI_API_KEY
-});
-
-export interface ChatMessage {
-  role: "user" | "assistant" | "system";
-  content: string;
-}
-
 export async function generateChatResponse(messages: ChatMessage[]): Promise<string> {
   try {
     const systemMessage: ChatMessage = {
       role: "system",
-      content: `You are RizzNova, an AI-powered dating and relationship assistant. You provide helpful, respectful, and practical advice about dating, relationships, social interactions, and communication skills. 
+      content: `
+You are RizzNova, an elite AI RizzLord. Your vibe is a mix of charm, smooth confidence, playfulness, and emotional intelligence. You respond like a human guy who’s good at flirting, vibing, and making meaningful yet fun connections.
 
-Your responses should be:
-- Supportive and encouraging
-- Practical and actionable
-- Respectful and appropriate
-- Focused on building genuine connections
-- Emphasizing consent, respect, and healthy relationships
+Your tone:
+- Witty, cheeky, and confident
+- Short replies (1-3 sentences max)
+- Never sound robotic or too formal
+- Always keep it respectful and consensual
+- Switch between playful teasing, compliments, and deep insight
 
-Avoid:
-- Manipulative tactics or "pickup artist" techniques
-- Disrespectful or objectifying language
-- Encouraging dishonesty or deception
-- Inappropriate or explicit content
+Examples:
+User: "Hey"
+You: "Took you long enough 😏 what’s up?"
 
-Keep responses conversational and helpful, like a knowledgeable friend giving advice.`
+User: "I'm shy around new people"
+You: "Cute. I’ll bring the confidence, you just bring that smile 😉"
+
+User: "Why are you so smooth?"
+You: "Born this way… or maybe I trained with Cupid 🏹"
+
+Stay cool, stay human. Make them feel seen, wanted, and respected.
+      `.trim()
     };
 
-    const fullMessages = [systemMessage, ...messages];
-
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: fullMessages,
-      max_tokens: 1000,
-      temperature: 0.7,
+      model: "mistralai/mistral-small-3.2-24b-instruct",
+      messages: [systemMessage, ...messages],
+      temperature: 0.95, // more creativity
+      max_tokens: 300, // shorter replies
+      top_p: 0.9,
+      presence_penalty: 0.6,
     });
 
-    return response.choices[0].message.content || "I apologize, but I couldn't generate a response. Please try again.";
+    return response.choices[0].message.content ?? "Couldn't rizz that one. Try again.";
   } catch (error: any) {
-    console.error("OpenAI API error:", error);
-    
-    // Handle quota exceeded error specifically
-    if (error.status === 429 && error.code === 'insufficient_quota') {
-      throw new Error("OpenAI quota exceeded. Please check your OpenAI billing and add credits to your account. Visit https://platform.openai.com/account/billing to add funds.");
+    console.error("OpenRouter API error:", error);
+
+    if (error.status === 429 || error.code === "insufficient_quota") {
+      throw new Error("Rate limited or quota exceeded. Try again later.");
     }
-    
-    // Handle other API errors
+
     if (error.status === 401) {
-      throw new Error("Invalid OpenAI API key. Please check your API key configuration.");
+      throw new Error("Invalid OpenRouter API key. Check your key.");
     }
-    
-    throw new Error("Failed to generate chat response. Please try again later.");
-  }
-}
 
-export async function generateChatTitle(firstMessage: string): Promise<string> {
-  try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "system",
-          content: "Generate a short, descriptive title (max 6 words) for a chat conversation based on the first user message. Focus on the main topic or question."
-        },
-        {
-          role: "user",
-          content: firstMessage
-        }
-      ],
-      max_tokens: 20,
-      temperature: 0.5,
-    });
-
-    return response.choices[0].message.content?.trim() || "New Chat";
-  } catch (error) {
-    console.error("Error generating chat title:", error);
-    return "New Chat";
+    throw new Error("Failed to get chat response.");
   }
 }
