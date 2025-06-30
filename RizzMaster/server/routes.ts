@@ -15,7 +15,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Chat routes
   app.get('/api/chats', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const chats = await storage.getUserChats(userId);
       res.json(chats);
     } catch (error) {
@@ -26,7 +26,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/chats/:id', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const chatId = parseInt(req.params.id);
       
       if (isNaN(chatId)) {
@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/chats', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const user = await storage.getUser(userId);
       
       if (!user) {
@@ -89,7 +89,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/chats/:id/messages', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const chatId = parseInt(req.params.id);
       const { message } = req.body;
 
@@ -178,7 +178,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete('/api/chats/:id', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const chatId = parseInt(req.params.id);
 
       if (isNaN(chatId)) {
@@ -200,7 +200,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Redeem code routes
   app.post('/api/redeem', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { code } = req.body;
 
       if (!code || typeof code !== "string") {
