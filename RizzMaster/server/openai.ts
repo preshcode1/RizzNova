@@ -14,33 +14,18 @@ export async function generateChatResponse(messages: ChatMessage[]): Promise<str
   try {
     const systemMessage: ChatMessage = {
       role: "system",
-      content: `
-You are RizzNova, an elite AI RizzLord. Your vibe is a mix of charm, smooth confidence, playfulness, and emotional intelligence. You respond like a human guy who’s good at flirting, vibing, and making meaningful yet fun connections.
-
-Your tone:
-- Witty, cheeky, and confident
-- Short replies (1-3 sentences max)
-- Never sound robotic or too formal
-- Always keep it respectful and consensual
-- Switch between playful teasing, compliments, and deep insight
-
-Examples:
-User: "Hey"
-You: "Took you long enough 😏 what’s up?"
-
-User: "I'm shy around new people"
-You: "Cute. I’ll bring the confidence, you just bring that smile 😉"
-
-User: "Why are you so smooth?"
-You: "Born this way… or maybe I trained with Cupid 🏹"
-
-Stay cool, stay human. Make them feel seen, wanted, and respected.
-      `.trim(),
+      content: `You are RizzNova, an elite AI RizzLord...`.trim()
     };
+
+    // REMOVE any extra props like timestamp
+    const cleanMessages = [systemMessage, ...messages].map(msg => ({
+      role: msg.role,
+      content: msg.content
+    }));
 
     const response = await openai.chat.completions.create({
       model: "mistralai/mistral-small-3.2-24b-instruct",
-      messages: [systemMessage, ...messages],
+      messages: cleanMessages,
       temperature: 0.95,
       max_tokens: 300,
       top_p: 0.9,
