@@ -50,3 +50,4 @@ Stay cool, stay human. Make them feel seen, wanted, and respected.
     throw new Error("Failed to get chat response.");
   }
 }
+export { generateChatResponse, generateChatTitle };
