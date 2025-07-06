@@ -144,6 +144,7 @@ export default function ChatPage() {
   }
 
   const messages = currentChat?.messages as ChatMessage[] || [];
+console.log("Messages:", messages);
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50">
